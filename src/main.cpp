@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
         return 1; // something's wrong
     }
 
-    while (!g_bRunning)
+    while (g_bRunning)
     {
         // handle input - update - render
         render();
