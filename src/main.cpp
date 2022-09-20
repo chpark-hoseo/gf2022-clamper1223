@@ -24,7 +24,7 @@ bool init(const char* title, int xpos, int ypos, int height, int width, int flag
 
     //SDL_SetRenderDrawColor(g_pRenderer, 0, 0, 0, 255);
     SDL_SetRenderDrawColor(g_pRenderer, rand() % 256, rand() % 256, rand() % 256, 255);
-    SDL_Delay(1000);
+    SDL_Delay(10000);
 
     return true;
 }
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
         return 1; // something's wrong
     }
 
-    while (g_bRunning)
+    while (!g_bRunning)
     {
         // handle input - update - render
         render();
