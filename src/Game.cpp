@@ -1,6 +1,6 @@
 #include "Game.h"
 #include <main.h>
-bool Game::init( /* 매개변수 추가 필요 */)
+bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         m_pWindow = SDL_CreateWindow(
@@ -28,6 +28,10 @@ bool Game::init( /* 매개변수 추가 필요 */)
     return true;
 }
 void Game::update()
+{
+
+}
+void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
     SDL_RenderPresent(m_pRenderer);

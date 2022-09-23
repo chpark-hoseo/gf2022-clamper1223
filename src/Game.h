@@ -1,5 +1,4 @@
 #pragma once
-#include "SDL.h"
 #include <main.h>
 
 class Game
@@ -8,10 +7,7 @@ public:
 	Game() { }
 	~Game() { }
 
-	bool init
-	(
-		/* 수정 필요 */
-	);
+	bool init(const char* title, int xpos, int ypos, int width, int height, int flags);
 	void render();
 	void update();
 	bool running();
