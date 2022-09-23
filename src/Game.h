@@ -1,3 +1,5 @@
+//전처리기 추가 #pragma once
+//즉 이것을 사용하여 헤더파일을 중복하지 말라는 신호를 보낸다.
 #pragma once
 #include <main.h>
 
