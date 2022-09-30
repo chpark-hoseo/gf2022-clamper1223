@@ -45,8 +45,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 
     //원본상자/대상상자의 위치 설정
-    m_destinationRectangle.x = m_sourceRectangle.x = 0;
-    m_destinationRectangle.y = m_sourceRectangle.y = 0;
+    m_destinationRectangle.x = m_sourceRectangle.x = 50;
+    m_destinationRectangle.y = m_sourceRectangle.y = 50;
 
     SDL_FreeSurface(pTempSurface);
     m_bRunning = true;
