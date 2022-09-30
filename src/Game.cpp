@@ -36,9 +36,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     SDL_QueryTexture(m_pTexture, NULL, NULL,
         &m_sourceRectangle.w, &m_sourceRectangle.h);
 
+    m_sourceRectangle.w = 50;
+    m_sourceRectangle.h = 50;
+
     //대상상자(m_destinationRectangle)의 너비/높이 설정
     m_destinationRectangle.w = m_sourceRectangle.w;
     m_destinationRectangle.h = m_sourceRectangle.h;
+
 
     //원본상자/대상상자의 위치 설정
     m_destinationRectangle.x = m_sourceRectangle.x = 0;
@@ -57,8 +61,6 @@ void Game::render()
     SDL_RenderClear(m_pRenderer);
     SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
     SDL_RenderPresent(m_pRenderer);
-    
-
 }
 bool Game::running()
 {
