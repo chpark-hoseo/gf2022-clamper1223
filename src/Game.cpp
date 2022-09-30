@@ -28,7 +28,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     //    return false; // SDL 초기화 실패
     //}
     //texture 생성
-    SDL_Surface* pTempSurface = SDL_LoadBMP("assets/Assets/rider.bmp");
+    SDL_Surface* pTempSurface = SDL_LoadBMP("assets/Assets/animate.bmp");
 
     m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
 
@@ -36,8 +36,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     SDL_QueryTexture(m_pTexture, NULL, NULL,
         &m_sourceRectangle.w, &m_sourceRectangle.h);
 
-    m_sourceRectangle.w = 640;
-    m_sourceRectangle.h = 480;
+    m_sourceRectangle.w = 128;
+    m_sourceRectangle.h = 82;
 
     //대상상자(m_destinationRectangle)의 너비/높이 설정
     m_destinationRectangle.w = m_sourceRectangle.w;
