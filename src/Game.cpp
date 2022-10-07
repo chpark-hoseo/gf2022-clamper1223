@@ -21,10 +21,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         break; // SDL 초기화 실패
     }
     //texture 생성
-    SDL_Surface* pTempSurface = IMG_Load("Assets/animate-alpha.png");
+    m_textureManager.load("Assets/animate-alpha.png", "animate", m_pRenderer);
 
-    m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-
+    /*
     //원본상자(m_sourceRectangle)의 너비/높이 설정 
     SDL_QueryTexture(m_pTexture, NULL, NULL,
         &m_sourceRectangle.w, &m_sourceRectangle.h);
@@ -42,37 +41,20 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     m_sourceRectangle.y = 0;
     m_destinationRectangle.x = 0;
     m_destinationRectangle.y = 0;
-    /*    //추가--------------------
-    SDL_QueryTexture(m_pTexture, NULL, NULL,
-        &m2_sourceRectangle.w, &m2_sourceRectangle.h);
-
-    m2_sourceRectangle.w = 128;
-    m2_sourceRectangle.h = 82;
-
-    //대상상자(m_destinationRectangle)의 너비/높이 설정
-    m2_destinationRectangle.w = m2_sourceRectangle.w;
-    m2_destinationRectangle.h = m2_sourceRectangle.h;
-
-
-    //원본상자/대상상자의 위치 설정
-    m2_sourceRectangle.x = 100;
-    m2_sourceRectangle.y = 100;
-    m2_destinationRectangle.x = 0;
-    m2_destinationRectangle.y = 0;
     */
 
-    SDL_FreeSurface(pTempSurface);
     m_bRunning = true;
     return true;
 }
 void Game::update()
 {
-    m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
+    m_currentFrame = ((SDL_GetTicks() / 100) % 6);
 }
 void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
-    SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+    m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
+    m_textureManager.drawFrame("animate", 100, 100, 128, 82, 0, m_currentFrame, m_pRenderer);
     SDL_RenderPresent(m_pRenderer);
 }
 bool Game::running()
@@ -100,41 +82,3 @@ void Game::clean()
     SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();
 }
-/*
-//추가-----------------------------------------
-void Game::update2()
-{
-    m2_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
-}
-void Game::render2()
-{
-    SDL_RenderClear(m_pRenderer);
-    SDL_RenderCopy(m_pRenderer, m_pTexture, &m2_sourceRectangle, &m2_destinationRectangle);
-    SDL_RenderPresent(m_pRenderer);
-}
-bool Game::running2()
-{
-    return m_bRunning;
-}
-void Game::handleEvents2()
-{
-    SDL_Event event;
-    if (SDL_PollEvent(&event))
-    {
-        switch (event.type)
-        {
-        case SDL_QUIT:
-            m_bRunning = false;
-            break;
-        default:
-            break;
-        }
-    }
-}
-void Game::clean2()
-{
-    SDL_DestroyWindow(m_pWindow);
-    SDL_DestroyRenderer(m_pRenderer);
-    SDL_Quit();
-}
-*/
