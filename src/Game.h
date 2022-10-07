@@ -15,12 +15,13 @@ public:
 	bool running();
 	void handleEvents();
 	void clean();
+	/*
 	void render2();
 	void update2();
 	bool running2();
 	void handleEvents2();
 	void clean2();
-
+	*/
 private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
@@ -32,7 +33,7 @@ private:
 
 	// 대상 사각형
 	SDL_Rect m_destinationRectangle;
-
+	/*
 	//추가-----------------------------
 
 	// 원본 사각형
@@ -40,4 +41,5 @@ private:
 
 	// 대상 사각형
 	SDL_Rect m2_destinationRectangle;
+	*/
 };

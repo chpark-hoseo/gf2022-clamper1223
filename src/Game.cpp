@@ -1,5 +1,7 @@
 #include "Game.h"
 #include <main.h>
+#include <SDL2/SDL_image.h>
+
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
     
@@ -11,7 +13,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
             while (m_pRenderer != 0) {
                 SDL_SetRenderDrawColor(
-                    m_pRenderer, 255, 255, 255, 255);
+                    m_pRenderer, 255, 0, 0, 255);
                 break; // 랜더러 생성 실패
             }
             break; // 윈도우 생성 실패
@@ -19,7 +21,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         break; // SDL 초기화 실패
     }
     //texture 생성
-    SDL_Surface* pTempSurface = SDL_LoadBMP("assets/Assets/animate.bmp");
+    SDL_Surface* pTempSurface = IMG_Load("assets/Assets/animate.png");
 
     m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
 
@@ -40,8 +42,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     m_sourceRectangle.y = 0;
     m_destinationRectangle.x = 0;
     m_destinationRectangle.y = 0;
-
-    //추가--------------------
+    /*    //추가--------------------
     SDL_QueryTexture(m_pTexture, NULL, NULL,
         &m2_sourceRectangle.w, &m2_sourceRectangle.h);
 
@@ -58,7 +59,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     m2_sourceRectangle.y = 100;
     m2_destinationRectangle.x = 0;
     m2_destinationRectangle.y = 0;
-
+    */
 
     SDL_FreeSurface(pTempSurface);
     m_bRunning = true;
@@ -99,6 +100,7 @@ void Game::clean()
     SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();
 }
+/*
 //추가-----------------------------------------
 void Game::update2()
 {
@@ -135,3 +137,4 @@ void Game::clean2()
     SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();
 }
+*/
