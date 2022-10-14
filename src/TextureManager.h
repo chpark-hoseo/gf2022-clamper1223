@@ -2,11 +2,14 @@
 #include <SDL2/SDL.h> 
 #include <main.h>
 #include <map>
+
+
+
 class TextureManager {
 public:
 
-    TextureManager() {}
-    ~TextureManager() {}
+    //TextureManager() {}
+    //~TextureManager() {}
 
     bool load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
 
@@ -17,6 +20,18 @@ public:
         int currentRow, int currentFrame,
         SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
+
+    static TextureManager* Instance() //정적 멤버함수
+    {
+        if (s_pInstance == 0)
+            s_pInstance = new TextureManager();
+        return s_pInstance;
+    }
+
 private:
+    TextureManager() {} //생성자 public에서 private로 변경
+    static TextureManager* s_pInstance; //정적 멤버변수 선언
     std::map<std::string, SDL_Texture*> m_textureMap;
 };
+
+typedef TextureManager TheTextureManager;

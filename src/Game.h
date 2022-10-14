@@ -22,6 +22,6 @@ private:
 	bool m_bRunning;
 	SDL_Texture* m_pTexture;
 
-	TextureManager m_textureManager;
+	// »èÁ¦ TextureManager m_textureManager;
 	int m_currentFrame;
 };
