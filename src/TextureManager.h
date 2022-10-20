@@ -3,8 +3,6 @@
 #include <main.h>
 #include <map>
 
-
-
 class TextureManager {
 public:
 
@@ -19,7 +17,6 @@ public:
     void drawFrame(std::string id, int x, int y, int width, int height,
         int currentRow, int currentFrame,
         SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
-
 
     static TextureManager* Instance() //정적 멤버함수
     {

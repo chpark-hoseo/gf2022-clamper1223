@@ -12,11 +12,6 @@ int main(int argc, char* argv[])
         g_game->handleEvents();
         g_game->update();
         g_game->render();
-        /*
-        g_game->handleEvents2();
-        g_game->update2();
-        g_game->render2();
-        */
     }
     g_game->clean();
 
