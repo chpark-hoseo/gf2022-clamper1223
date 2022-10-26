@@ -1,6 +1,12 @@
 #include "Game.h"
 #include <main.h>
 #include <SDL2/SDL_image.h>
+#include <conio.h>
+
+#define UP 72
+#define DOWN 80
+#define RIGHT 77
+#define LEFT 75
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
@@ -13,7 +19,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
             while (m_pRenderer != 0) {
                 SDL_SetRenderDrawColor(
-                    m_pRenderer, 255, 0, 0, 255);
+                    m_pRenderer, 0, 0, 0, 255);
                 break; // 랜더러 생성 실패
             }
             break; // 윈도우 생성 실패
@@ -21,30 +27,15 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         break; // SDL 초기화 실패
     }
     //texture 생성(교체)
-    if (!TheTextureManager::Instance()->load("Assets/animate-alpha.png", "animate", m_pRenderer))
+    if (!TheTextureManager::Instance()->load("assets/Assets/pacman.png", "animate", m_pRenderer))
     {
         return false;
     }
-
-    /*
-    //원본상자(m_sourceRectangle)의 너비/높이 설정 
-    SDL_QueryTexture(m_pTexture, NULL, NULL,
-        &m_sourceRectangle.w, &m_sourceRectangle.h);
-
-    m_sourceRectangle.w = 128;
-    m_sourceRectangle.h = 82;
-
-    //대상상자(m_destinationRectangle)의 너비/높이 설정
-    m_destinationRectangle.w = m_sourceRectangle.w;
-    m_destinationRectangle.h = m_sourceRectangle.h;
-
-
-    //원본상자/대상상자의 위치 설정
-    m_sourceRectangle.x = 0;
-    m_sourceRectangle.y = 0;
-    m_destinationRectangle.x = 0;
-    m_destinationRectangle.y = 0;
-    */
+    //다른 이미지를 놓는 순간 강제종료
+    //if (!TheTextureManager::Instance()->load("assets/Assets/pacmanmaze.png", "animate", m_pRenderer))
+    //{
+    //    return false;
+    //}
 
     m_bRunning = true;
     return true;
@@ -55,18 +46,44 @@ void Game::update()
 }
 void Game::render()
 {
+    int x = 0;
+    int y = 0;
     SDL_RenderClear(m_pRenderer);
-    //교체
-    TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82,
+    TheTextureManager::Instance()->draw("animate", x, y, 100, 100,
         m_pRenderer);
+    
 
-    TheTextureManager::Instance()->drawFrame("animate", 100, 100, 128,
-        82, 0, m_currentFrame, m_pRenderer);
-
+    
     SDL_RenderPresent(m_pRenderer);
 }
 bool Game::running()
 {
+    char c;
+    int x = 0;
+    int y = 0;
+    //이 방향조작을 어디다 놔야할지 모르겠음
+    for (;;) {
+        if (_kbhit()) {
+            c = _getch();
+            if (c == -32) {
+                c = _getch();
+                switch (c) {
+                case LEFT:
+                    x--;
+                    break;
+                case RIGHT:
+                    x++;
+                    break;
+                case UP:
+                    y--;
+                    break;
+                case DOWN:
+                    y++;
+                    break;
+                }
+            }
+        }
+    }
     return m_bRunning;
 }
 void Game::handleEvents()
