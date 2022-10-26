@@ -1,5 +1,5 @@
-//ÀüÃ³¸®±â Ãß°¡ #pragma once
-//Áï ÀÌ°ÍÀ» »ç¿ëÇÏ¿© Çì´õÆÄÀÏÀ» Áßº¹ÇÏÁö ¸»¶ó´Â ½ÅÈ£¸¦ º¸³½´Ù.
+ï»¿//ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ #pragma once
+//ï¿½ï¿½ ï¿½Ì°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 #pragma once
 #include <main.h>
 #include "TextureManager.h"
@@ -22,17 +22,9 @@ private:
 	bool m_bRunning;
 	SDL_Texture* m_pTexture;
 
-<<<<<<< HEAD
-	SDL_Window* m2_pWindow;
-	SDL_Renderer* m2_pRenderer;
-	bool m2_bRunning;
-	SDL_Texture* m2_pTexture;
-
-=======
-    int x;
+	int x;
 	int y;
-    
->>>>>>> ba4ecc43a88c22b436bc7918f0199823ea9a59d9
-	// »èÁ¦ TextureManager m_textureManager;
+
+	// ï¿½ï¿½ï¿½ï¿½ TextureManager m_textureManager;
 	int m_currentFrame;
 };

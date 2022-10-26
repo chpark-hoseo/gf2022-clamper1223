@@ -5,7 +5,7 @@ int main(int argc, char* argv[])
 {
     g_game = new Game();
 
-    g_game->init("Game Class", 100, 100, 1024, 768, 0);
+    g_game->init("Game Class", 100, 100, 1400, 900, 0);
 
     while (g_game->running())
     {

@@ -1,17 +1,11 @@
-#include "Game.h"
+ï»¿#include "Game.h"
 #include <main.h>
 #include <SDL2/SDL_image.h>
 #include <conio.h>
-
-#define UP 72
-#define DOWN 80
-#define RIGHT 77
-#define LEFT 75
-
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
-    
-    if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
+
+    if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         m_pWindow = SDL_CreateWindow(
             title, xpos, ypos, width, height, flags);
         if (m_pWindow != 0) {
@@ -19,52 +13,24 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
             if (m_pRenderer != 0) {
                 SDL_SetRenderDrawColor(
-<<<<<<< HEAD
-                    m_pRenderer, 153, 204, 255, 255);
-                break; // ·£´õ·¯ »ý¼º ½ÇÆÐ
-=======
                     m_pRenderer, 0, 0, 0, 255);
-             //   break; // ·£´õ·¯ »ý¼º ½ÇÆÐ
->>>>>>> ba4ecc43a88c22b436bc7918f0199823ea9a59d9
+                //   break; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
-         //   break; // À©µµ¿ì »ý¼º ½ÇÆÐ
+            //   break; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
-    //    break; // SDL ÃÊ±âÈ­ ½ÇÆÐ
+        //    break; // SDL ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½
     }
-<<<<<<< HEAD
-    /*
-    while (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
-        m2_pWindow = SDL_CreateWindow(
-            title, xpos, ypos, width, height, flags);
-        while (m2_pWindow != 0) {
-            m2_pRenderer = SDL_CreateRenderer(m2_pWindow, -1, 0);
-
-            while (m2_pRenderer != 0) {
-                SDL_SetRenderDrawColor(
-                    m2_pRenderer, 255, 0, 0, 255);
-                break; // ·£´õ·¯ »ý¼º ½ÇÆÐ
-            }
-            break; // À©µµ¿ì »ý¼º ½ÇÆÐ
-        }
-        break; // SDL ÃÊ±âÈ­ ½ÇÆÐ
-    }
-    */
-    //texture »ý¼º(±³Ã¼)
-    if (!TheTextureManager::Instance()->load("Assets/animate-alpha.png", "animate", m_pRenderer)) return false;
-    //if (!TheTextureManager::Instance()->load("Assets/ground.png", "ground", m2_pRenderer)) return false;
-=======
-    //texture »ý¼º(±³Ã¼)
+    //texture ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Ã¼)
     if (!TheTextureManager::Instance()->load("assets/Assets/pacman.png", "animate", m_pRenderer))
     {
         return false;
     }
-    
+
     if (!TheTextureManager::Instance()->load("assets/Assets/pacmanmaze.jpg", "animate2", m_pRenderer))
     {
         return false;
     }
-    
->>>>>>> ba4ecc43a88c22b436bc7918f0199823ea9a59d9
+
 
     m_bRunning = true;
     x = y = 0;
@@ -74,59 +40,25 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 void Game::update()
 {
     m_currentFrame = ((SDL_GetTicks() / 100) % 6);
-    /*
-    while (SDL_PollEvent(&event)) {
-
-
-        if (event.type == SDL_KEYDOWN) {
-            switch (event.key.keysym.sy
-
-            {
-
-            case SDLK_LEFT: x -= 5;  break;
-hh
-            case SDLK_RIGHT:x += 5; break;
-
-            }
-
-
-        }
-    }
-    */
-    
-   
 }
 void Game::render()
 {
-    
     SDL_RenderClear(m_pRenderer);
-<<<<<<< HEAD
-    //±³Ã¼
-    // TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
+    TheTextureManager::Instance()->draw("animate2", 0, 0, 1400, 900, m_pRenderer);
+    TheTextureManager::Instance()->draw("animate", x, y, 100, 100, m_pRenderer);
 
-    TheTextureManager::Instance()->drawFrame("animate", 100, 100, 128, 82, 0, m_currentFrame, m_pRenderer);
 
-=======
-    TheTextureManager::Instance()->draw("animate", x, y, 100, 100,
-        m_pRenderer);
-    TheTextureManager::Instance()->draw("animate2", x, y, 100, 100,
-        m_pRenderer);
-
-    
->>>>>>> ba4ecc43a88c22b436bc7918f0199823ea9a59d9
     SDL_RenderPresent(m_pRenderer);
 }
 bool Game::running()
 {
-    /*
-*/
     return m_bRunning;
 }
 void Game::handleEvents()
 {
- 
-
     SDL_Event event;
+
+    //int degree = 0;
 
     while (SDL_PollEvent(&event))
     {
@@ -137,19 +69,23 @@ void Game::handleEvents()
             switch (event.key.keysym.sym)
             {
             case SDLK_RIGHT:
+                //degree = 0;
                 x += 5;
                 break;
 
             case SDLK_LEFT:
+                //degree = 180;
                 x -= 5;
                 break;
 
             case SDLK_DOWN:
-                //  ++playerPos.y;
+                //degree = 90;
+                y += 5;
                 break;
 
             case SDLK_UP:
-                //  --playerPos.y;
+                //degree = 270;
+                y -= 5;
                 break;
 
             default:
