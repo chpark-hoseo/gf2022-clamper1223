@@ -1,14 +1,14 @@
+#pragma once
+
 #include <SDL2/SDL.h>
 #include <string>
 #include <map>
 
-typedef TextureManager TheTextureManager;
 class TextureManager {
 private:
-
     TextureManager() {}
-    //~TextureManager() {}
 
+public:
     bool load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
 
     void draw(std::string id, int x, int y, int width, int height,
@@ -34,3 +34,5 @@ public:
     }
     
 };
+
+typedef TextureManager TheTextureManager;

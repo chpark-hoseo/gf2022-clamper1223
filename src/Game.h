@@ -1,6 +1,9 @@
-//#include "SDL.h"
+#pragma once
+
 #include <SDL2/SDL.h>
 #include "TextureManager.h"
+#include "GameObject.h"
+#include "Player.h"
 
 class Game
 {
@@ -14,6 +17,8 @@ public:
 	bool running();
 	void handleEvents();
 	void clean();
+	GameObject m_go;
+	Player m_player;
 
 private:
 	SDL_Window* m_pWindow;
