@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <Instance.h>
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
@@ -25,40 +26,10 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         return false; // SDL 초기화 실패
     }
     // Texture 생성 
-    SDL_Surface* pTempSurface = IMG_Load("Assets/animate-alpha.png");
-
-    m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-
-    SDL_FreeSurface(pTempSurface);
-    
-    // 원본상자(m_sourceRectangle)의 너비/높이 설정 
-    m_sourceRectangle.w = 128;
-    m_sourceRectangle.h = 82;
-    /*
-    SDL_QueryTexture(m_pTexture, NULL, NULL,
-        &m_sourceRectangle.w, &m_sourceRectangle.h);
-    */
-    // 대상상자(m_destinationRectangle)의 너비/높이 설정
-    m_destinationRectangle.w = m_sourceRectangle.w;
-    m_destinationRectangle.h = m_sourceRectangle.h;
-    // 원본상자/대상상자의 위치 설정
-    m_destinationRectangle.x = m_sourceRectangle.x = 0;
-    m_destinationRectangle.y = m_sourceRectangle.y = 0;
-    /*
-    // m_sourceRectangle 상자 설정 
-    SDL_QueryTexture(m_pTexture, NULL, NULL,
-        &m_sourceRectangle.w, &m_sourceRectangle.h);
-
-    m_sourceRectangle.x = 0;
-    m_sourceRectangle.y = 0;
-    // m_destinationRectangle 설정 
-    m_destinationRectangle.w = m_sourceRectangle.w;
-    m_destinationRectangle.h = m_sourceRectangle.h;
-
-    m_destinationRectangle.x = 0;
-    m_destinationRectangle.y = 0;
-    */
-
+    if (!TheTextureManager::Instance()->load("Assets/animate-alpha.png", "animate", m_pRenderer))
+    {
+        return false;
+    }
 
     m_bRunning = true;
     return true;
@@ -67,13 +38,17 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 void Game::update()
 {
     // 게임 데이터 갱신
-    m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
+    m_currentFrame = ((SDL_GetTicks() / 100) % 6);
 }
 
 void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
-    SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+    TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82,
+        m_pRenderer);
+
+    TheTextureManager::Instance()->drawFrame("animate", 100, 100, 128,
+        82, 0, m_currentFrame, m_pRenderer);
     SDL_RenderPresent(m_pRenderer);
 }
 

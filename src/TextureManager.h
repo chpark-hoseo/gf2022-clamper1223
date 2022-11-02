@@ -2,9 +2,8 @@
 #include <string>
 #include <map>
 
-
 class TextureManager {
-public:
+private:
 
     TextureManager() {}
     ~TextureManager() {}
@@ -19,5 +18,17 @@ public:
         SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 private:
+    static TextureManager* s_pInstance;
+
+private:
     std::map<std::string, SDL_Texture*> m_textureMap;
+
+public:
+    static TextureManager* Instance()
+    {
+        if (s_pInstance == 0)
+            s_pInstance = new TextureManager();
+        return s_pInstance;
+    }
+    typedef TextureManager TheTextureManager;
 };
