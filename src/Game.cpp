@@ -1,7 +1,6 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <Instance.h>
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {

@@ -2,11 +2,12 @@
 #include <string>
 #include <map>
 
+typedef TextureManager TheTextureManager;
 class TextureManager {
 private:
 
     TextureManager() {}
-    ~TextureManager() {}
+    //~TextureManager() {}
 
     bool load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
 
@@ -16,6 +17,7 @@ private:
     void drawFrame(std::string id, int x, int y, int width, int height,
         int currentRow, int currentFrame,
         SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    
 
 private:
     static TextureManager* s_pInstance;
@@ -30,5 +32,5 @@ public:
             s_pInstance = new TextureManager();
         return s_pInstance;
     }
-    typedef TextureManager TheTextureManager;
+    
 };
