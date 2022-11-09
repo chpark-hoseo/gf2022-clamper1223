@@ -8,10 +8,11 @@
 
 class Game
 {
-public:
+private:
 	Game() { }
-	~Game() { }
+	static Game* s_pInstance;
 
+public:
 	bool init(const char* title, int xpos, int ypos, int width, int height, int flags);
 	void render();
 	void update();
@@ -22,21 +23,23 @@ public:
 	Player m_player;
 	std::vector<GameObject*> m_gameObjects;
 
+	static Game* Instance() {
+		if (s_pInstance == 0) {
+			s_pInstance = new Game();
+			return s_pInstance;
+		}
+		return s_pInstance;
+	}
+	SDL_Renderer* getRenderer() const { return m_pRenderer; }
+
+
 private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
 
 	SDL_Texture* m_pTexture;
-	//TextureManager m_textureManager;
 	int m_currentFrame;
-
-	
-
-
-	// 원본 사각형
-	//SDL_Rect m_sourceRectangle;
-
-	// 대상 사각형
-	//SDL_Rect m_destinationRectangle;
 };
+
+typedef Game TheGame;
