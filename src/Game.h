@@ -4,6 +4,7 @@
 #include "TextureManager.h"
 #include "GameObject.h"
 #include "Player.h"
+#include <vector>
 
 class Game
 {
@@ -19,6 +20,7 @@ public:
 	void clean();
 	GameObject m_go;
 	Player m_player;
+	std::vector<GameObject*> m_gameObjects;
 
 private:
 	SDL_Window* m_pWindow;
@@ -28,6 +30,8 @@ private:
 	SDL_Texture* m_pTexture;
 	//TextureManager m_textureManager;
 	int m_currentFrame;
+
+	
 
 
 	// 원본 사각형
