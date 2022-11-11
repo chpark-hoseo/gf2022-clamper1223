@@ -1,15 +1,18 @@
 #pragma once
 
-#include <SDL2/SDL.h>
+// #include <SDL2/SDL.h>
+#include "LoaderParams.h"
+
 #include <string>
 class GameObject {
 
 public:
-	virtual  void load(int x, int y, int width, int height,
-		std::string textureID);
-	virtual  void draw(SDL_Renderer* pRenderer);
-	virtual  void update();
-	virtual  void clean() {};
+	
+
+	virtual void draw() = 0;
+	virtual void update() = 0;
+	virtual void clean() = 0;
+	virtual ~GameObject() {}
 
 protected:
 	std::string m_textureID;
@@ -21,4 +24,6 @@ protected:
 
 	int m_currentFrame;
 	int m_currentRow;
+
+	GameObject(const LoaderParams* pParams) {}
 };
