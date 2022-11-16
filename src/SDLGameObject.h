@@ -16,7 +16,9 @@ public:
 
 protected:
 
-	Vector2D m_position;
+	Vector2D m_position; // 위치
+	Vector2D m_velocity; // 속도
+	Vector2D m_acceleration; // 가속도
 	int m_width;
 	int m_height;
 	int m_currentRow;

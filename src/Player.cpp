@@ -4,21 +4,6 @@
 
 Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
-/*
-void Player::load(int x, int y, int width, int height, std::string textureID)
-{
-    GameObject::load(x, y, width, height, textureID);
-}
-void Player::draw(SDL_Renderer* pRenderer)
-{
-    GameObject::draw(pRenderer);
-}
-
-void Player::update()
-{
-    m_x -= 1;
-}
-*/
 void Player::draw()
 {
     SDLGameObject::draw();
@@ -26,7 +11,8 @@ void Player::draw()
 
 void Player::update()
 {
-    m_x -= 1;
+    SDLGameObject::update(); // ← 부모 클래스의 함수 호출 
     m_currentFrame = ((SDL_GetTicks() / 100) % 6);
+    m_velocity.setX(1); // 등속도 조절
 }
 void Player::clean() {}
