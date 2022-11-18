@@ -3,6 +3,7 @@
 #include <SDL2/SDL_image.h>
 #include "Enemy.h"
 #include "Player.h"
+#include "InputHandler.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -64,7 +65,7 @@ bool Game::running()
 {
     return m_bRunning;
 }
-
+/*
 void Game::handleEvents()
 {
     SDL_Event event;
@@ -80,7 +81,12 @@ void Game::handleEvents()
         }
     }
 }
-
+*/
+void Game::handleEvents()
+{
+    TheInputHandler::Instance()->update();
+    TheInputHandler::Instance()->clean();
+}
 void Game::clean()
 {
     SDL_DestroyWindow(m_pWindow);

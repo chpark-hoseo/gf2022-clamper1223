@@ -19,8 +19,8 @@ public:
 	bool running();
 	void handleEvents();
 	void clean();
-//	GameObject m_go;
-	//Player m_player;
+	void quit() { m_bRunning = false; }
+
 	std::vector<GameObject*> m_gameObjects;
 
 	static Game* Instance() {

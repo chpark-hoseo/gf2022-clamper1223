@@ -30,4 +30,3 @@ int main(int argc, char* argv[])
     TheGame::Instance()->clean();
     return 0;
 }
-
