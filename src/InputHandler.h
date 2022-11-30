@@ -10,6 +10,13 @@ enum mouse_buttons {
 class InputHandler {
 
 public:
+
+    void onMouseMove(SDL_Event event);
+    void onMouseButtonDown(SDL_Event event);
+    void onMouseButtonUp(SDL_Event event);
+    void onKeyDown();
+    void onKeyUp();
+
     InputHandler()
     {
         m_mousePosition = new Vector2D(0, 0);
