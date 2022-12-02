@@ -12,8 +12,8 @@ void Player::draw()
 
 void Player::update()
 {
-    handleInput();
     m_currentFrame = ((SDL_GetTicks() / 100) % 6);
+    handleInput();
     SDLGameObject::update();
 }
 void Player::clean() {}
@@ -22,14 +22,38 @@ void Player::handleInput()
 {
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)) {
         m_velocity.setX(2);
+    } else {
+        m_velocity.setX(0);
     }
+
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT)) {
         m_velocity.setX(-2);
+    } else {
+        //m_velocity.setX(0);
     }
+
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP)) {
         m_velocity.setY(-2);
+    } else {
+        m_velocity.setY(0);
     }
+
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN)) {
         m_velocity.setY(2);
+    } else {
+        //m_velocity.setY(0);
+    }
+
+    float b = 2;
+
+    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {
+        for (float a = -1; a >= -50; )
+        {
+            a = a + b;
+            b = b - 0.1;
+            SDL_Delay(0.5);
+            m_velocity.setY(a);
+        }
+        SDL_Delay(1000);
     }
 }
