@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Game.h"
 #include "InputHandler.h"
+#include "Bullet.h"
 
 Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
@@ -12,7 +13,7 @@ void Player::draw()
 
 void Player::update()
 {
-    m_currentFrame = ((SDL_GetTicks() / 100) % 6);
+    //m_currentFrame = ((SDL_GetTicks() / 100) % 6);
     handleInput();
     SDLGameObject::update();
 }
@@ -44,16 +45,7 @@ void Player::handleInput()
         //m_velocity.setY(0);
     }
 
-    float b = 2;
-
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {
-        for (float a = -1; a >= -50; )
-        {
-            a = a + b;
-            b = b - 0.1;
-            SDL_Delay(0.5);
-            m_velocity.setY(a);
-        }
-        SDL_Delay(1000);
+    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) { //น฿ป็
+        //Bullet::SDLGameObject();
     }
 }

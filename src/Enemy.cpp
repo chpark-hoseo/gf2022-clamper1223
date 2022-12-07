@@ -13,7 +13,7 @@ void Enemy::update()
 {
 	SDLGameObject::update();
 	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
-	m_acceleration.setX(1);// 가속도 조절
+	m_velocity.setX(-2);
 }
 
 void Enemy::clean() {}
