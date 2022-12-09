@@ -29,3 +29,4 @@ void SDLGameObject::draw()
         m_width, m_height, m_currentRow, m_currentFrame,
         TheGame::Instance()->getRenderer());
 }
+//clean 만들고싶음

@@ -21,31 +21,58 @@ void Player::clean() {}
 
 void Player::handleInput()
 {
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)) {
-        m_velocity.setX(2);
-    } else {
+    if (m_position.getX() > -60 && m_position.getX() < 580 && m_position.getY() > -20 && m_position.getY() < 440)
+    {
+        if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)) {
+            m_velocity.setX(4);
+        }
+        else {
+            m_velocity.setX(0);
+        }
+
+        if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT)) {
+            m_velocity.setX(-4);
+        }
+        else {
+            //m_velocity.setX(0);
+        }
+
+        if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP)) {
+            m_velocity.setY(-4);
+        }
+        else {
+            m_velocity.setY(0);
+        }
+
+        if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN)) {
+            m_velocity.setY(4);
+        }
+        else {
+            //m_velocity.setY(0);
+        }
+
+        if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) { //발사
+            //Bullet::SDLGameObject();
+        }
+    }
+    else if(m_position.getX() < -60)
+    {
         m_velocity.setX(0);
+        m_position.setX(-59);
     }
-
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT)) {
-        m_velocity.setX(-2);
-    } else {
-        //m_velocity.setX(0);
+    else if (m_position.getX() > 580)
+    {
+        m_velocity.setX(0);
+        m_position.setX(579);
     }
-
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP)) {
-        m_velocity.setY(-2);
-    } else {
+    else if (m_position.getY() < -20)
+    {
         m_velocity.setY(0);
+        m_position.setY(-19);
     }
-
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN)) {
-        m_velocity.setY(2);
-    } else {
-        //m_velocity.setY(0);
-    }
-
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) { //발사
-        //Bullet::SDLGameObject();
+    else if (m_position.getY() > 440)
+    {
+        m_velocity.setY(0);
+        m_position.setY(439);
     }
 }

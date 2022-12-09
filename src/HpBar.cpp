@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
 #include "HpBar.h"
+#include "Enemy.h"
 
 HpBar::HpBar(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
@@ -11,9 +12,16 @@ void HpBar::draw()
 
 void HpBar::update()
 {
+	int a = 0;
 	SDLGameObject::update();
-	//m_currentFrame = ((SDL_GetTicks() / 100) % 6);
-	//m_velocity.setX(-5);
+	
+	/*
+	if (Player::SDLGameObject::m_position.getX() == Enemy::SDLGameObject::m_position.getX())
+	{
+		a = a - 94;
+		m_position.setX(a);
+	}
+	*/
 }
 
 void HpBar::clean() {}
