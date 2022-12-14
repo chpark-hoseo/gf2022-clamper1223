@@ -58,7 +58,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     m_gameObjects.push_back(new HpBack(new LoaderParams(0, 410, 376, 65, "hpback")));
     m_gameObjects.push_back(new HpBar(new LoaderParams(0, 410, 376, 65, "hpbar")));
 
-
+    //보류
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) { //발사
         m_gameObjects.push_back(new Bullet(new LoaderParams(50, 200, 128, 41, "bullet")));
         m_gameObjects.push_back(new Bullet(new LoaderParams(50, 200, 128, 41, "bullet")));
@@ -66,9 +66,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_gameObjects.push_back(new Bullet(new LoaderParams(50, 200, 128, 41, "bullet")));
         m_gameObjects.push_back(new Bullet(new LoaderParams(50, 200, 128, 41, "bullet")));
     }
-
-    
-    
 
     m_bRunning = true;
     return true;

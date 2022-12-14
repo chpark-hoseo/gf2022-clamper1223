@@ -3,6 +3,8 @@
 #include "Game.h"
 #include "InputHandler.h"
 #include "Bullet.h"
+#include "Enemy.h"
+#include "HpBar.h"
 
 Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
@@ -74,5 +76,10 @@ void Player::handleInput()
     {
         m_velocity.setY(0);
         m_position.setY(439);
+    }
+    if (m_position.getX() == Enemy::SDLGameObject::m_position.getX() &&
+        m_position.getY() == Enemy::SDLGameObject::m_position.getY())
+    {
+        HpBar::SDLGameObject::m_position.setX(-94);
     }
 }
